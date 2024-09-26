@@ -11,6 +11,6 @@ config_version=5
 [application]
 
 config/name="TextureSharingTest"
-run/main_scene="res://sample_zmq_both_scene.tscn"
+run/main_scene="res://sample_zmq_sender_scene.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"

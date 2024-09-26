@@ -1,15 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://ctx3f3ofp4qkw"]
+[gd_scene load_steps=4 format=3 uid="uid://cfscrqd2c2mrn"]
 
-[ext_resource type="Script" path="res://test_zmq_both.gd" id="1_4bp3f"]
-[ext_resource type="PackedScene" uid="uid://chl5otnxallor" path="res://scene_3d.tscn" id="2_0rblq"]
+[ext_resource type="Script" path="res://test_zmq_sender.gd" id="1_exmty"]
+[ext_resource type="PackedScene" uid="uid://chl5otnxallor" path="res://scene_3d.tscn" id="2_isdpa"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_yflob"]
 viewport_path = NodePath("SubViewport")
 
-[node name="SampleZMQReceiverScene" type="Node2D"]
+[node name="SampleZMQSenderScene" type="Node2D"]
 
-[node name="TestZMQBoth" type="Node" parent="." node_paths=PackedStringArray("texture_rect", "sub_viewport")]
-script = ExtResource("1_4bp3f")
+[node name="TestZMQSender" type="Node" parent="." node_paths=PackedStringArray("texture_rect", "sub_viewport")]
+script = ExtResource("1_exmty")
 texture_rect = NodePath("../HBoxContainer/Received")
 sub_viewport = NodePath("../SubViewport")
 
@@ -27,4 +27,4 @@ layout_mode = 2
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true
 
-[node name="Scene3d" parent="SubViewport" instance=ExtResource("2_0rblq")]
+[node name="Scene3d" parent="SubViewport" instance=ExtResource("2_isdpa")]

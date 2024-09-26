@@ -4,7 +4,7 @@ extends Node
 @export var sub_viewport: SubViewport;
 
 @onready var serializer: GVTextureSerializer = GVTextureSerializer.new()
-@onready var zmq_receiver: ZMQReceiver = ZMQReceiver.new_from("tcp://localhost:9991", ZMQ.SocketType.SUB, ZMQ.ConnectionMode.BIND, "")
+#@onready var zmq_receiver: ZMQReceiver = ZMQReceiver.new_from("tcp://localhost:9991", ZMQ.SocketType.SUB, ZMQ.ConnectionMode.BIND, "")
 @onready var zmq_sender: ZMQSender = ZMQSender.new_from("tcp://localhost:9991", ZMQ.SocketType.PUB, ZMQ.ConnectionMode.CONNECT, "", false)
 # @onready var image_texture: CompressedTexture2D = load("res://icon.svg")
 
@@ -96,11 +96,11 @@ func _image_format_to_string(format: int) -> String:
 			return "UNKNOWN"
 
 func _ready() -> void:
-	#pass
-	zmq_receiver.onMessageBytes(func(bytes: PackedByteArray):
-		# print("[ZMQ Receiver] Received: ", str)
-		received_bytes = bytes
-	)
+	pass
+	#zmq_receiver.onMessageBytes(func(bytes: PackedByteArray):
+		## print("[ZMQ Receiver] Received: ", str)
+		#received_bytes = bytes
+	#)
 
 func _compress_decompress_image() -> void:
 	# var src_image: Image = image_texture.get_image()

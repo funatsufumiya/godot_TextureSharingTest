@@ -5,10 +5,11 @@ extends Node
 
 @onready var serializer: GVTextureSerializer = GVTextureSerializer.new()
 @onready var zmq_receiver: ZMQReceiver = ZMQReceiver.new_from("tcp://localhost:9991", ZMQ.SocketType.SUB, ZMQ.ConnectionMode.BIND, "")
-@onready var zmq_sender: ZMQSender = ZMQSender.new_from("tcp://localhost:9991", ZMQ.SocketType.PUB, ZMQ.ConnectionMode.CONNECT, "", false)
+#@onready var zmq_sender: ZMQSender = ZMQSender.new_from("tcp://localhost:9991", ZMQ.SocketType.PUB, ZMQ.ConnectionMode.CONNECT, "", false)
 # @onready var image_texture: CompressedTexture2D = load("res://icon.svg")
 
 var received_bytes: PackedByteArray = PackedByteArray()
+var mutex: Mutex = Mutex.new()
 
 func _image_format_to_string(format: int) -> String:
 	match format:
@@ -96,10 +97,12 @@ func _image_format_to_string(format: int) -> String:
 			return "UNKNOWN"
 
 func _ready() -> void:
-	#pass
+	pass
 	zmq_receiver.onMessageBytes(func(bytes: PackedByteArray):
 		# print("[ZMQ Receiver] Received: ", str)
+		mutex.lock()
 		received_bytes = bytes
+		mutex.unlock()
 	)
 
 func _compress_decompress_image() -> void:
@@ -116,10 +119,11 @@ func _compress_decompress_image() -> void:
 	var bytes:PackedByteArray = serializer.serializeImage(src_image)
 	# print("packed bytes: ", bytes.size())
 	
-	if bytes.size() > 0:
-		zmq_sender.sendBytes(bytes)
+	#if bytes.size() > 0:
+		#zmq_sender.sendBytes(bytes)
 
 	if received_bytes.size() > 0:
+		mutex.lock()
 		var image: Image = serializer.deserialize(received_bytes)
 		received_bytes.clear()
 		# print("decompressed image")
@@ -131,6 +135,7 @@ func _compress_decompress_image() -> void:
 		if image.get_width() > 0 and image.get_height() > 0:
 			if texture_rect:
 				texture_rect.texture = ImageTexture.create_from_image(image)
+		mutex.unlock()
 	#
 	# if sm_reader != null:
 	# 	var bytes_read:PackedByteArray = sm_reader.read_bytes()
