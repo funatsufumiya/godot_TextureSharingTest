@@ -1,5 +1,7 @@
 # TextureSharingTest
 
+Texture Share example using [ZMQ](https://github.com/funatsufumiya/godot_zeromq/), [GVTextureSerializer](https://github.com/funatsufumiya/godot_gv_texture_serializer).
+
 (en)
 
 ## Build
