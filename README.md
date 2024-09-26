@@ -1,6 +1,6 @@
 # Godot TextureSharingTest
 
-Texture Share example using [ZMQ](https://github.com/funatsufumiya/godot_zeromq/), [GVTextureSerializer](https://github.com/funatsufumiya/godot_gv_texture_serializer).
+Realtime Texture Share example using [ZMQ](https://github.com/funatsufumiya/godot_zeromq/), [GVTextureSerializer](https://github.com/funatsufumiya/godot_gv_texture_serializer). Transferring bytes size is 1/40 (max) smaller than normal RGBA8 texture transport.
 
 (en)
 
