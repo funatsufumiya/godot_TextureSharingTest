@@ -111,34 +111,36 @@ func _compress_decompress_image() -> void:
 	# print("packed bytes: ", bytes.size())
 	
 	if sm_writer == null:
-		sm_writer = SharedMemoryWriter.try_create("imagePipe", 262143, false)
+		sm_writer = SharedMemoryWriter.try_create("imagePipe", 262143, true)
 
 		if sm_writer == null:
 			print("Failed to create shared memory writer")
 			return
 		
 	if sm_writer != null:
-		sm_writer.write_bytes(bytes)
-
+		if bytes.size() > 0:
+			sm_writer.write_bytes(bytes)
+#
 	if sm_reader == null:
-		sm_reader = SharedMemoryReader.try_create("imagePipe", 262143, false)
+		sm_reader = SharedMemoryReader.try_create("imagePipe", 262143, true)
 
 		if sm_reader == null:
 			print("Failed to create shared memory reader")
 			return
 
-	#if sm_reader != null:
-		#var bytes_read:PackedByteArray = sm_reader.read_bytes()
-		#if bytes_read.size() > 0:
-			#var image: Image = serializer.deserialize(bytes_read)
-			## print("decompressed image")
-			## print("width: ", image.get_width())
-			## print("height: ", image.get_height())
-			## print("format: ", _image_format_to_string(image.get_format()))
-			## print("image_bytes: ", image.get_data().size())
-#
-			#if texture_rect:
-				#texture_rect.texture = ImageTexture.create_from_image(image)
+	if sm_reader != null:
+		var bytes_read:PackedByteArray = sm_reader.read_bytes()
+		if bytes_read.size() > 0:
+			var image: Image = serializer.deserialize(bytes_read)
+			# print("decompressed image")
+			# print("width: ", image.get_width())
+			# print("height: ", image.get_height())
+			# print("format: ", _image_format_to_string(image.get_format()))
+			# print("image_bytes: ", image.get_data().size())
+
+			if image.get_width() > 0 and image.get_height() > 0:
+				if texture_rect:
+					texture_rect.texture = ImageTexture.create_from_image(image)
 
 	#var image: Image = serializer.deserialize(bytes)
 	# print("decompressed image")

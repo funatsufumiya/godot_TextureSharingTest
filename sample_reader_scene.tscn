@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://8dxycnewdf6p"]
+
+[ext_resource type="Script" path="res://test_reader.gd" id="1_oq5wv"]
+[ext_resource type="PackedScene" uid="uid://chl5otnxallor" path="res://scene_3d.tscn" id="2_urcry"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_yflob"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_nk74r"]
+
+[node name="SampleReaderScene" type="Node2D"]
+
+[node name="TestReader" type="Node" parent="." node_paths=PackedStringArray("texture_rect", "sub_viewport")]
+script = ExtResource("1_oq5wv")
+texture_rect = NodePath("../HBoxContainer/Received")
+sub_viewport = NodePath("../SubViewport")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Original" type="TextureRect" parent="HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = SubResource("ViewportTexture_yflob")
+
+[node name="OriginalDummy" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(512, 512)
+layout_mode = 2
+texture = SubResource("ImageTexture_nk74r")
+
+[node name="Received" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+
+[node name="Scene3d" parent="SubViewport" instance=ExtResource("2_urcry")]

@@ -1,15 +1,15 @@
 [gd_scene load_steps=4 format=3 uid="uid://bf12oagje6tb8"]
 
-[ext_resource type="Script" path="res://test.gd" id="1_t0n1d"]
-[ext_resource type="PackedScene" uid="uid://chl5otnxallor" path="res://scene_3d.tscn" id="2_h14pi"]
+[ext_resource type="Script" path="res://test_both.gd" id="1_1nhyc"]
+[ext_resource type="PackedScene" uid="uid://chl5otnxallor" path="res://scene_3d.tscn" id="2_weuc1"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_yflob"]
 viewport_path = NodePath("SubViewport")
 
-[node name="SampleScene" type="Node2D"]
+[node name="SampleBothScene" type="Node2D"]
 
-[node name="Test" type="Node" parent="." node_paths=PackedStringArray("texture_rect", "sub_viewport")]
-script = ExtResource("1_t0n1d")
+[node name="TestBoth" type="Node" parent="." node_paths=PackedStringArray("texture_rect", "sub_viewport")]
+script = ExtResource("1_1nhyc")
 texture_rect = NodePath("../HBoxContainer/Received")
 sub_viewport = NodePath("../SubViewport")
 
@@ -27,4 +27,4 @@ layout_mode = 2
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true
 
-[node name="Scene3d" parent="SubViewport" instance=ExtResource("2_h14pi")]
+[node name="Scene3d" parent="SubViewport" instance=ExtResource("2_weuc1")]
