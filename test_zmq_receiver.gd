@@ -4,8 +4,8 @@ extends Node
 @export var sub_viewport: SubViewport;
 
 @onready var serializer: GVTextureSerializer = GVTextureSerializer.new()
-@onready var zmq_receiver: ZMQReceiver = ZMQReceiver.new_from("tcp://localhost:9991", ZMQ.SocketType.SUB, ZMQ.ConnectionMode.BIND, "")
-#@onready var zmq_sender: ZMQSender = ZMQSender.new_from("tcp://localhost:9991", ZMQ.SocketType.PUB, ZMQ.ConnectionMode.CONNECT, "", false)
+@onready var zmq_receiver: ZMQReceiver = ZMQReceiver.new_from("tcp://localhost:5555", ZMQ.SocketType.SUB, ZMQ.ConnectionMode.CONNECT, "")
+#@onready var zmq_sender: ZMQSender = ZMQSender.new_from("tcp://localhost:5555", ZMQ.SocketType.PUB, ZMQ.ConnectionMode.BIND, "", false)
 # @onready var image_texture: CompressedTexture2D = load("res://icon.svg")
 
 var received_bytes: PackedByteArray = PackedByteArray()
