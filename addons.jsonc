@@ -1,0 +1,52 @@
+// Godot addons configuration file for use with the GodotEnv tool.
+// See https://github.com/chickensoft-games/GodotEnv for more info.
+// -------------------------------------------------------------------- //
+// Note: this is a JSONC file, so you can use comments!
+// If using Rider, see https://youtrack.jetbrains.com/issue/RIDER-41716
+// for any issues with JSONC.
+// -------------------------------------------------------------------- //
+{
+  "$schema": "https://chickensoft.games/schemas/addons.schema.json",
+  // "path": "addons", // default
+  // "cache": ".addons", // default
+  "addons": {
+    "osc": { // name must match the folder name in the repository
+      "url": "https://github.com/funatsufumiya/godot_osc_bin",
+      // "source": "remote", // default
+      // "checkout": "main", // default
+      "checkout": "v0.1.3"
+      // "subfolder": "addons/imrp"
+    },
+    "finder": {
+      "url": "https://github.com/funatsufumiya/godot_finder_bin",
+      "checkout": "v0.1.3",
+    },
+    "gv_video": {
+      "url": "https://github.com/funatsufumiya/godot_gv_video_extension_bin",
+      "checkout": "ab19234"
+    },
+    "debug_menu": {
+      "url": "https://github.com/godot-extended-libraries/godot-debug-menu",
+      "checkout": "v1.2.0",
+      // "checkout": "3211673",
+      "subfolder": "addons/debug_menu"
+    },
+    "instant-realistic-light": {
+      "url": "https://github.com/soykhaler/Instant-Realistic-Light-Godot-Engine",
+      "checkout": "8ce7cfbf",
+      "subfolder": "addons/instant-realistic-light"
+    },
+    "zeromq": {
+      "url": "https://github.com/funatsufumiya/godot_zeromq_bin",
+      "checkout": "v0.1.0",
+    },
+    "sharedmemory": {
+      "url": "https://github.com/funatsufumiya/godot_sharedmemory_bin",
+      "checkout": "v0.1.1",
+    },
+    "gv_texture_serializer": {
+      "url": "https://github.com/funatsufumiya/godot_gv_texture_serializer_bin",
+      "checkout": "v0.1.2",
+    },
+  }
+}
